@@ -73,3 +73,27 @@ for i in range(1, N):
         idx -= 1
     arr[idx] = val
 print(arr)
+
+# Quick Sort
+# 분할 정복을 이용하여 배열, 피봇을 정한 후 피봇 앞에는 피봇 보다 작은 값이, 피봇 뒤에는 피봇보다 큰 값이 오도록 한다.
+arr = [5,4,8,7,3,1,6,10,2,9]
+N = len(arr)
+
+def QuickSort(arr, lo, hi):
+    if lo >= hi: return
+    pivot = partition(arr, lo, hi)
+    QuickSort(arr, lo, pivot-1)
+    QuickSort(arr, pivot+1, hi)
+
+def partition(arr, lo, hi):
+    pivot = arr[lo]
+    i, j = lo, hi
+    while i < j:
+        while arr[j] < pivot: j -= 1
+        while i < j and arr[i] >= pivot: i +=1
+        arr[i], arr[j] = arr[j], arr[i]
+    arr[lo], arr[i] = arr[i], arr[lo]
+    return i
+
+QuickSort(arr, 0, N-1)
+print(arr)
