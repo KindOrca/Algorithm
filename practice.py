@@ -97,3 +97,40 @@ def partition(arr, lo, hi):
 
 QuickSort(arr, 0, N-1)
 print(arr)
+
+print("-------------------------------")
+
+# Merge Sort
+arr = [5,4,8,7,3,1,6,10,2,9]
+N = len(arr)
+
+def MergeSort(arr, lo, hi):
+    if lo >= hi: return
+    mid = (lo + hi) // 2
+    MergeSort(arr, lo, mid)
+    MergeSort(arr, mid+1, hi)
+    Merge(arr, lo, mid, hi)
+
+def Merge(arr, lo, mid, hi):
+    temp = []
+    i, j = lo, mid+1
+    while i <= mid and j <= hi:
+        if arr[i] < arr[j]:
+            temp.append(arr[i])
+            i += 1
+        else:
+            temp.append(arr[j])
+            j += 1
+    
+    while  i <= mid:
+        temp.append(arr[i])
+        i += 1
+    
+    while j <= hi:
+        temp.append(arr[j])
+        j += 1
+    
+    arr[lo:hi+1] = temp
+
+MergeSort(arr, 0, N-1)
+print(arr)
